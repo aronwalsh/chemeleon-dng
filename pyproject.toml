@@ -1,9 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "chemeleon-dng"
 version = "0.1.0"
-description = "Add your description here"
+description = "Chemeleon framework for De Novo Generation (DNG) and Crystal Structure Prediction (CSP) tasks"
 readme = "README.md"
 requires-python = ">=3.11"
+license = "MIT"
+authors = [
+    {name = "Hyunsoo Park", email = "hspark1212@gmail.com"}
+]
+maintainers = [
+    {name = "Hyunsoo Park", email = "hspark1212@gmail.com"}
+]
+keywords = ["crystal structure", "materials science", "generative AI", "diffusion models", "crystal structure prediction", "de novo generation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 dependencies = [
     "ase>=3.26.0",
     "fire>=0.7.1",
@@ -13,6 +34,12 @@ dependencies = [
     "torch>=2.1.0",
     "torch-geometric>=2.6.1",
 ]
+
+[project.urls]
+Homepage = "https://github.com/hspark1212/chemeleon-dng"
+Repository = "https://github.com/hspark1212/chemeleon-dng"
+Issues = "https://github.com/hspark1212/chemeleon-dng/issues"
+Documentation = "https://github.com/hspark1212/chemeleon-dng#readme"
 
 [tool.setuptools]
 packages = ["chemeleon_dng"]
