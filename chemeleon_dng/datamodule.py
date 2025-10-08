@@ -1,5 +1,5 @@
-from torch_geometric.loader import DataLoader
 from pytorch_lightning import LightningDataModule
+from torch_geometric.loader import DataLoader
 
 from chemeleon_dng.dataset.mp_dataset import MPDataset
 

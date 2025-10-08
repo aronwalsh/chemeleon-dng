@@ -1,16 +1,14 @@
 from collections import OrderedDict
-from pydantic import BaseModel, Field, ConfigDict
-
-from ase import Atoms
-from ase.build.tools import sort
 
 import torch
+from ase import Atoms
+from ase.build.tools import sort
+from pydantic import BaseModel, ConfigDict, Field
 from torch import Tensor
 
 
 class CrystalBatch(BaseModel):
-    """
-    A schema for a batch of crystal structures.
+    """A schema for a batch of crystal structures.
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
@@ -28,8 +26,7 @@ class CrystalBatch(BaseModel):
 
 
 class Trajectory(BaseModel):
-    """
-    A schema for a trajectory of crystal structures.
+    """A schema for a trajectory of crystal structures.
     Each crystal structure is represented as a CrystalBatch.
     """
 
@@ -63,7 +60,7 @@ class Trajectory(BaseModel):
 
         atoms_list = []
         for i, (frac_coords, atom_types) in enumerate(
-            zip(split_frac_coords, split_atom_types)
+            zip(split_frac_coords, split_atom_types, strict=False)
         ):
             atoms = Atoms(
                 numbers=atom_types.detach().cpu().numpy(),

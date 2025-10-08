@@ -1,18 +1,17 @@
 from abc import abstractmethod
 
 import torch
+from pytorch_lightning import LightningModule
 from torch import Tensor
 from torch.optim.adam import Adam
-from torch.optim.sgd import SGD
 from torch.optim.adamw import AdamW
-from pytorch_lightning import LightningModule
+from torch.optim.sgd import SGD
 
 from chemeleon_dng.schema import CrystalBatch
 
 
 class BaseModule(LightningModule):
-    """
-    Base module for configuration of optimizers and logging.
+    """Base module for configuration of optimizers and logging.
     """
 
     def __init__(

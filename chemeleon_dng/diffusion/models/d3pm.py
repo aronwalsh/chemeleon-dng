@@ -6,8 +6,7 @@ from chemeleon_dng.diffusion.models.base import DiffusionModelBase
 
 
 class D3PM(DiffusionModelBase):
-    """
-    Discrete Denoising Diffusion Probabilistic Models (D3PM).
+    """Discrete Denoising Diffusion Probabilistic Models (D3PM).
     """
 
     def __init__(

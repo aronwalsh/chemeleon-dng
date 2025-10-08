@@ -1,5 +1,4 @@
 import numpy as np
-
 import torch
 import torch.nn.functional as F
 from torch import Tensor
@@ -8,8 +7,7 @@ from chemeleon_dng.diffusion.models.base import DiffusionModelBase
 
 
 class DSM(DiffusionModelBase):
-    """
-    Denoising Score Matching (DSM).
+    """Denoising Score Matching (DSM).
     """
 
     def __init__(
@@ -31,8 +29,7 @@ class DSM(DiffusionModelBase):
         self.sigmas_norm = torch.cat([torch.ones([1]), _sigmas_norm], dim=0)
 
     def q_sample(self, x_start: Tensor, t: Tensor, batch_idx: Tensor, noise=None):
-        """
-        Sample from the forward process q(x_t | x_0).
+        """Sample from the forward process q(x_t | x_0).
 
         :param x_start: the initial data batch.
         :param t: the number of diffusion steps (minus 1). Here, 0 means one step.

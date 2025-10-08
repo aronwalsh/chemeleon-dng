@@ -1,5 +1,4 @@
-"""
-This script samples crystal structures using a trained diffusion model.
+"""This script samples crystal structures using a trained diffusion model.
 It supports three types of tasks:
 - CSP (Crystal Structure Prediction): Predicts stable crystal structures from given atom types
 - DNG (De Novo Generation): Generates new crystal structures from scratch
@@ -8,14 +7,15 @@ It supports three types of tasks:
 
 import json
 from pathlib import Path
+
 import fire
 import numpy as np
-from pymatgen.core import Composition, Structure
-from monty.serialization import dumpfn
-
 import torch
-from chemeleon_dng.diffusion.diffusion_module import DiffusionModule
+from monty.serialization import dumpfn
+from pymatgen.core import Composition, Structure
+
 from chemeleon_dng.dataset.num_atom_distributions import NUM_ATOM_DISTRIBUTIONS
+from chemeleon_dng.diffusion.diffusion_module import DiffusionModule
 from chemeleon_dng.download_util import get_checkpoint_path
 
 DEFAULT_MODEL_PATH = {
@@ -198,7 +198,7 @@ def sample(
         assert formulas is not None, "Formulas must be provided for CSP task."
         if isinstance(formulas, str):
             if formulas.endswith(".json"):
-                with open(formulas, "r") as f:
+                with open(formulas) as f:
                     formulas = json.load(f)
             else:
                 formulas = tuple(formulas.split(","))

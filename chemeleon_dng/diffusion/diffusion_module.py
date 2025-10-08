@@ -1,21 +1,20 @@
-import enum
 import copy
-from tqdm import tqdm
+import enum
 
 import torch
 from torch import Tensor
+from tqdm import tqdm
 
 from chemeleon_dng.base_module import BaseModule
 from chemeleon_dng.cspnet import CSPNet
+from chemeleon_dng.diffusion.diffusion_scheduler import uniform_sample_t
+from chemeleon_dng.diffusion.models import D3PM, DDPM, DSM
 from chemeleon_dng.schema import CrystalBatch, Trajectory
 from chemeleon_dng.script_util import create_model
-from chemeleon_dng.diffusion.models import D3PM, DDPM, DSM
-from chemeleon_dng.diffusion.diffusion_scheduler import uniform_sample_t
 
 
 class DiffusionModuleTask(enum.Enum):
-    """
-    Which task of the model.
+    """Which task of the model.
     """
 
     CSP = enum.auto()  # Crystal Structure Prediction
@@ -24,8 +23,7 @@ class DiffusionModuleTask(enum.Enum):
 
 
 class DiffusionType(enum.Enum):
-    """
-    Type of diffusion model.
+    """Type of diffusion model.
     """
 
     D3PM = enum.auto()  # Discrete Denoising Diffusion Probabilistic Models (Discrete)
@@ -34,8 +32,7 @@ class DiffusionType(enum.Enum):
 
 
 class DiffusionModule(BaseModule):
-    """
-    Utilities for training and sampling diffusion models.
+    """Utilities for training and sampling diffusion models.
     """
 
     def __init__(
@@ -70,8 +67,7 @@ class DiffusionModule(BaseModule):
         noise_lattices: Tensor | None = None,
         noise_frac_coords: Tensor | None = None,
     ) -> CrystalBatch:
-        """
-        Sample from the forward process q(x_t | x_0).
+        """Sample from the forward process q(x_t | x_0).
         """
         return CrystalBatch(
             atom_types=(
@@ -175,8 +171,7 @@ class DiffusionModule(BaseModule):
         cond_embeds: Tensor | None = None,
         null_cond_embeds: Tensor | None = None,
     ) -> CrystalBatch:
-        """
-        Sample from the reverse process p(x_{t-1} | x_t).
+        """Sample from the reverse process p(x_{t-1} | x_t).
         """
         # Predictor
         model_predictor_output = _model_prediction(

@@ -5,15 +5,13 @@ from collections import namedtuple
 
 import torch
 import torch.nn as nn
-
 from torch_geometric.utils import dense_to_sparse
 
 from chemeleon_dng.scatter import scatter_mean
 
 
 class CSPNetTask(enum.Enum):
-    """
-    Which task of the model.
+    """Which task of the model.
     """
 
     CSP = enum.auto()  # Crystal Structure Prediction
@@ -45,7 +43,7 @@ class SinusoidalTimeEmbeddings(nn.Module):
 
 
 class SinusoidsEmbedding(nn.Module):
-    "Embedding for periodic distance features."
+    """Embedding for periodic distance features."""
 
     def __init__(self, n_frequencies=10, n_space=3):
         super().__init__()
@@ -182,8 +180,7 @@ class CSPLayer(nn.Module):
 
 
 class CSPNet(nn.Module):
-    """
-    CSPNet model, adopted from DiffCSP
+    """CSPNet model, adopted from DiffCSP
 
     - edge_style = fc
     - Task

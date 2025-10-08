@@ -1,4 +1,5 @@
 import math
+
 import numpy as np
 import torch
 
@@ -17,8 +18,7 @@ def get_named_beta_schedule(
     beta_start=0.0001,
     beta_end=0.02,
 ):
-    """
-    Get a pre-defined beta schedule for the given name.
+    """Get a pre-defined beta schedule for the given name.
 
     The beta schedule library consists of beta schedules which remain similar
     in the limit of num_diffusion_timesteps.
@@ -40,8 +40,7 @@ def get_named_beta_schedule(
 
 
 def cosine_beta_schedule(timesteps, s=0.008):
-    """
-    cosine schedule as proposed in https://arxiv.org/abs/2102.09672
+    """Cosine schedule as proposed in https://arxiv.org/abs/2102.09672
     """
     steps = timesteps + 1
     x = torch.linspace(0, timesteps, steps)
