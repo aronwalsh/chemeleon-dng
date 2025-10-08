@@ -12,7 +12,7 @@ warnings.filterwarnings("ignore", category=UserWarning, module="pymatgen")
 
 
 class MPDataset(Dataset):
-    """Dataset for Materials Project data (e.g., MP-20)
+    """Dataset for Materials Project data (e.g., MP-20).
     """
 
     def __init__(

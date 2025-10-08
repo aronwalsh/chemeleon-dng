@@ -180,7 +180,7 @@ class CSPLayer(nn.Module):
 
 
 class CSPNet(nn.Module):
-    """CSPNet model, adopted from DiffCSP
+    """CSPNet model, adopted from DiffCSP.
 
     - edge_style = fc
     - Task

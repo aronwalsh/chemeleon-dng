@@ -22,20 +22,12 @@ ex.add_config("configs/train_diffusion.yaml")
 
 @ex.named_config
 def csp():
-    task = "csp"
-    model = {
-        "pred_atom_types": False,
-        "cond_dim": 0,
-    }
+    pass
 
 
 @ex.named_config
 def dng():
-    task = "dng"
-    model = {
-        "pred_atom_types": True,
-        "cond_dim": 0,
-    }
+    pass
 
 
 @ex.automain

@@ -2,7 +2,7 @@
 It supports three types of tasks:
 - CSP (Crystal Structure Prediction): Predicts stable crystal structures from given atom types
 - DNG (De Novo Generation): Generates new crystal structures from scratch
-- GUIDE (Guiding Generation): Generates structures with guidance
+- GUIDE (Guiding Generation): Generates structures with guidance.
 """
 
 import json
@@ -40,8 +40,8 @@ def sample_csp(
     print(f"Generating {num_samples} samples for each formula: {formula_list}")
 
     # Generate samples in batches
-    def repeat_elements(l, times):
-        return [x for x in l for _ in range(times)]
+    def repeat_elements(elements, times):
+        return [x for x in elements for _ in range(times)]
 
     total_formula_list = repeat_elements(formula_list, num_samples)
     for i in range(0, len(total_formula_list), batch_size):
@@ -137,8 +137,8 @@ def sample(
                   If None, uses CUDA if available, otherwise CPU, defaults to None
     :param save_json: Whether to save the generated structures in JSON format, defaults to True
 
-    Examples\n
-    --------\n
+    Examples:
+    --------
     # CSP: Generate 100 samples each for NaCl, OCl3, and UO15 formulas, processing 150 samples at a time
     >>> sample(task="csp", formulas="NaCl, OCl3, UO15", num_samples=100, batch_size=150, output_dir="./results")
     or
