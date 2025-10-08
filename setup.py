@@ -1,8 +1,8 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name="chemeleon-dng",
-    py_modules=["chemeleon_dng"],
+    packages=find_packages(),
     install_requires=[
         "torch>=2.1.0",
         "pytorch-lightning>=2.1.0",
