@@ -24,3 +24,6 @@ outputs/
 *.env
 *.sh
 *.tar.gz
+
+# Distribution / packaging
+dist/

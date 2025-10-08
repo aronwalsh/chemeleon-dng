@@ -9,18 +9,28 @@ While [Chemeleon](https://github.com/hspark1212/chemeleon) GitHub repository foc
 
 ### Prerequisites
 
-- Python 3.9+
+- Python 3.11+
 - PyTorch >= 2.1.0
 - CUDA (optional, for GPU acceleration)
 
-### Install the Package
+### Install via pip
 
 ```bash
-conda create -n chemeleon-dng python=3.11
-conda activate chemeleon-dng
+pip install chemeleon-dng
+```
+
+### Install from Source
+
+If you don't have uv installed:
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+Then install the package:
+
+```bash
 git clone https://github.com/hspark1212/chemeleon-dng.git
 cd chemeleon-dng
-pip install -e .
+uv sync
 ```
 
 ## Quick Start
@@ -47,7 +57,7 @@ sample(
 For the command line interface, you can use the following command:
 
 ```bash
-python chemeleon_dng/sample.py --task=csp --formulas="NaCl,LiMnO2" --num_samples=10 --output_dir="results" --device=cpu
+python -m chemeleon_dng.sample --task=csp --formulas="NaCl,LiMnO2" --num_samples=10 --output_dir="results" --device=cpu
 ```
 
 This command generates 10 crystal structures for the given formulas using the CSP task and saves the CIF files of the generated structures in the `results/` directory using CPU.
@@ -71,14 +81,14 @@ sample(
 For the command line interface, you can use the following command:
 
 ```bash
-python scripts/sample.py --task=dng --num_samples=200 --batch_size=100 --output_dir="results" --device=cuda
+python -m chemeleon_dng.sample --task=dng --num_samples=200 --batch_size=100 --output_dir="results" --device=cuda
 ```
 
 This command generates 200 random crystal structures using the DNG task with two batches of 100 each, and saves the generated structures in the `results/` directory using GPU.
 
 ## Pretrained Models
 
-When you execute `scripts/sample.py`, it will automatically download the pretrained models from the [figshare](https://figshare.com/articles/dataset/Chemeleon-dng/29196176?file=54966305) repository and save them in the `ckpts/` directory (if not already present). The pretrained models were trained on `mp-20` and `alex_mp_20` datasets.
+When you run the sample script, it will automatically download the pretrained models from the [figshare](https://figshare.com/articles/dataset/Chemeleon-dng/29196176?file=54966305) repository and save them in the `ckpts/` directory (if not already present). The pretrained models were trained on `mp-20` and `alex_mp_20` datasets.
 
 The framework includes pretrained checkpoints located in the `ckpts/` directory:
 

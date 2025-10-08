@@ -1,0 +1,124 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chemeleon-dng"
+version = "0.1.0"
+description = "Chemeleon framework for De Novo Generation (DNG) and Crystal Structure Prediction (CSP) tasks"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [
+    {name = "Hyunsoo Park", email = "hspark1212@gmail.com"}
+]
+maintainers = [
+    {name = "Hyunsoo Park", email = "hspark1212@gmail.com"}
+]
+keywords = ["crystal structure", "materials science", "generative AI", "diffusion models", "crystal structure prediction", "de novo generation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "ase>=3.26.0",
+    "fire>=0.7.1",
+    "pydantic>=2.12.0",
+    "pymatgen>=2025.10.7",
+    "pytorch-lightning>=2.5.5",
+    "torch>=2.1.0",
+    "torch-geometric>=2.6.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/hspark1212/chemeleon-dng"
+Repository = "https://github.com/hspark1212/chemeleon-dng"
+Issues = "https://github.com/hspark1212/chemeleon-dng/issues"
+Documentation = "https://github.com/hspark1212/chemeleon-dng#readme"
+
+[tool.setuptools]
+packages = ["chemeleon_dng"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = [
+    "smoke: Quick smoke tests for basic functionality",
+    "baseline: Baseline tests to validate code before/after formatting",
+    "unit: Unit tests for individual components",
+    "integration: Integration tests for component interactions",
+    "slow: Tests that take significant time to run",
+]
+addopts = ["-ra", "-q", "--strict-markers"]
+filterwarnings = [
+    "ignore::UserWarning:torch.nn.modules.transformer",
+    "ignore::UserWarning:lightning.pytorch.utilities.parsing",
+]
+
+[tool.ruff]
+# Python version target
+target-version = "py311"
+# Black-compatible line length
+line-length = 88
+
+[tool.ruff.lint]
+# Rule sets to enable:
+select = [
+    "F",    # F: Pyflakes errors (undefined names, unused imports)
+    "E",    # E: PEP 8 style errors (indentation, whitespace)
+    "W",    # W: PEP 8 style warnings (deprecated features)
+    "I",    # I: isort import sorting
+    "N",    # N: PEP 8 naming conventions
+    "D",    # D: Docstrings (pydocstyle)
+    "UP",   # UP: pyupgrade (modernize Python syntax)
+    "ANN",  # ANN: Type annotations (flake8-annotations)
+    "S",    # S: Security checks (flake8-bandit)
+    "B",    # B: Bugbear (design issues, anti-patterns)
+    "C90",  # C90: McCabe complexity checker
+]
+
+# Rules to ignore for existing codebase (retroactive linting)
+ignore = [
+    "ANN001",  # Missing type annotation for function argument
+    "ANN002",  # Missing type annotation for *args
+    "ANN003",  # Missing type annotation for **kwargs
+    "ANN201",  # Missing return type annotation for public function
+    "ANN202",  # Missing return type annotation for private function
+    "ANN204",  # Missing return type annotation for __init__
+    "ANN205",  # Missing return type annotation for static method
+    "D102",    # Missing docstring in public method
+    "D103",    # Missing docstring in public function
+    "D105",    # Missing docstring in magic method
+    "D107",    # Missing docstring in __init__
+    "D200",    # One-line docstring should fit on one line
+    "D205",    # Missing blank line after summary
+    "D417",    # Missing argument description in docstring
+    "E501",    # Line too long (existing code has long lines)
+    "N802",    # Function name should be lowercase
+    "N806",    # Variable in function should be lowercase
+    "N812",    # Lowercase imported as non-lowercase
+    "S101",    # Use of assert detected (common in ML code for shape checks)
+    "S301",    # Pickle usage (needed for model checkpoints)
+    "B007",    # Unused loop control variable
+    "B008",    # Function call in default argument
+    "C901",    # Function is too complex
+    "UP008",   # Use super() without arguments
+    "S202",    # Uses of tarfile.extractall()
+    "D100",    # Missing docstring in public module
+    "D104",    # Missing docstring in public package
+]
+
+[tool.ruff.lint.pydocstyle]
+# Docstring style convention
+convention = "google"
+
+[tool.ruff.lint.mccabe]
+# Maximum cyclomatic complexity threshold
+max-complexity = 10
+

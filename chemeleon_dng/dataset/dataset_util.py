@@ -1,8 +1,7 @@
-from ase import Atoms
-from pymatgen.core import Structure, Lattice
-
 import torch
-from torch_geometric.data import Data, Batch
+from ase import Atoms
+from pymatgen.core import Lattice, Structure
+from torch_geometric.data import Batch, Data
 
 
 def pmg_structure_to_pyg_data(pmg_structure: Structure, **kwargs) -> Data:

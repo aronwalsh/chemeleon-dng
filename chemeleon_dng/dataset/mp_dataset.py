@@ -2,9 +2,7 @@ import warnings
 from pathlib import Path
 
 import pandas as pd
-
-from pymatgen.core import Structure, Lattice
-
+from pymatgen.core import Lattice, Structure
 from torch.utils.data import Dataset
 from torch_geometric.data import Data
 
@@ -14,8 +12,7 @@ warnings.filterwarnings("ignore", category=UserWarning, module="pymatgen")
 
 
 class MPDataset(Dataset):
-    """
-    Dataset for Materials Project data (e.g., MP-20)
+    """Dataset for Materials Project data (e.g., MP-20).
     """
 
     def __init__(

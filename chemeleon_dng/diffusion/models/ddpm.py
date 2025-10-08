@@ -6,8 +6,7 @@ from chemeleon_dng.diffusion.models.base import DiffusionModelBase
 
 
 class DDPM(DiffusionModelBase):
-    """
-    Denoising Diffusion Probabilistic Model (DDPM).
+    """Denoising Diffusion Probabilistic Model (DDPM).
     """
 
     def __init__(
@@ -43,8 +42,7 @@ class DDPM(DiffusionModelBase):
         )
 
     def q_sample(self, x_start, t, noise=None):
-        """
-        Sample from the forward process q(x_t | x_0).
+        """Sample from the forward process q(x_t | x_0).
 
         :param x_start: the initial data batch.
         :param t: the number of diffusion steps.
@@ -62,8 +60,7 @@ class DDPM(DiffusionModelBase):
 
     @torch.no_grad()
     def p_sample(self, model_output: Tensor, x_t: Tensor, t: Tensor):
-        """
-        Sample x_{t-1} from the model at the given timestep.
+        """Sample x_{t-1} from the model at the given timestep.
 
         :param model_output: the model output, which is either the predicted epsilon.
         :param x_t: the current tensor at x_{t}.
@@ -94,8 +91,7 @@ class DDPM(DiffusionModelBase):
         return {"loss": loss}
 
     def p_mean_and_var(self, model_output: Tensor, x_t: Tensor, t: Tensor):
-        """
-        Compute the mean and variance of the posterior distribution.
+        """Compute the mean and variance of the posterior distribution.
 
         :param model_output: the model output, which is either the predicted epsilon.
         :param x_t: the current tensor at x_{t}.
@@ -109,8 +105,7 @@ class DDPM(DiffusionModelBase):
 
 
 def _extract_into_tensor(arr, timesteps, broadcast_shape):
-    """
-    Extract values from a 1-D numpy array for a batch of indices.
+    """Extract values from a 1-D numpy array for a batch of indices.
 
     :param arr: the 1-D numpy array.
     :param timesteps: a tensor of indices into the array to extract.

@@ -6,8 +6,7 @@ from chemeleon_dng.diffusion.models.base import DiffusionModelBase
 
 
 class D3PM(DiffusionModelBase):
-    """
-    Discrete Denoising Diffusion Probabilistic Models (D3PM).
+    """Discrete Denoising Diffusion Probabilistic Models (D3PM).
     """
 
     def __init__(
@@ -104,7 +103,7 @@ class D3PM(DiffusionModelBase):
         noise: Tensor | None = None,
     ):
         """Sample from q(x_t | x_start) (i.e. add noise to the data).
-        q(x_t | x_start) = Categorical(x_t ; p = x_start Q_{1...t})
+        q(x_t | x_start) = Categorical(x_t ; p = x_start Q_{1...t}).
 
         Args:
             x_start (Tensor): Data at t=0.

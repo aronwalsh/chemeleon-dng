@@ -1,5 +1,6 @@
 import tarfile
 from pathlib import Path
+
 import requests
 from tqdm import tqdm
 
@@ -9,7 +10,7 @@ FIGSHARE_URL = "https://figshare.com/ndownloader/files/54966305"
 
 def download_file(url: str, filepath: Path) -> None:
     """Download a file from URL with progress bar."""
-    response = requests.get(url, stream=True)
+    response = requests.get(url, stream=True, timeout=30)
     response.raise_for_status()
 
     total_size = int(response.headers.get("content-length", 0))

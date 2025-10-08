@@ -1,5 +1,4 @@
 import numpy as np
-
 import torch
 import torch.nn.functional as F
 from torch import Tensor
@@ -8,8 +7,7 @@ from chemeleon_dng.diffusion.models.base import DiffusionModelBase
 
 
 class DSM(DiffusionModelBase):
-    """
-    Denoising Score Matching (DSM).
+    """Denoising Score Matching (DSM).
     """
 
     def __init__(
@@ -31,8 +29,7 @@ class DSM(DiffusionModelBase):
         self.sigmas_norm = torch.cat([torch.ones([1]), _sigmas_norm], dim=0)
 
     def q_sample(self, x_start: Tensor, t: Tensor, batch_idx: Tensor, noise=None):
-        """
-        Sample from the forward process q(x_t | x_0).
+        """Sample from the forward process q(x_t | x_0).
 
         :param x_start: the initial data batch.
         :param t: the number of diffusion steps (minus 1). Here, 0 means one step.
@@ -141,23 +138,23 @@ class DSM(DiffusionModelBase):
         return mean, var
 
 
-def p_wrapped_normal(x, sigma, N=10, T=1.0):
+def p_wrapped_normal(x, sigma, n=10, t=1.0):
     p_ = 0
-    for i in range(-N, N + 1):
-        p_ += torch.exp(-((x + T * i) ** 2) / 2 / sigma**2)
+    for i in range(-n, n + 1):
+        p_ += torch.exp(-((x + t * i) ** 2) / 2 / sigma**2)
     return p_
 
 
-def d_log_p_wrapped_normal(x, sigma, N=10, T=1.0):
+def d_log_p_wrapped_normal(x, sigma, n=10, t=1.0):
     p_ = 0
-    for i in range(-N, N + 1):
-        p_ += (x + T * i) / sigma**2 * torch.exp(-((x + T * i) ** 2) / 2 / sigma**2)
-    return p_ / p_wrapped_normal(x, sigma, N, T)
+    for i in range(-n, n + 1):
+        p_ += (x + t * i) / sigma**2 * torch.exp(-((x + t * i) ** 2) / 2 / sigma**2)
+    return p_ / p_wrapped_normal(x, sigma, n, t)
 
 
-def get_sigma_norm(sigma, T=1.0, sn=10000):
+def get_sigma_norm(sigma, t=1.0, sn=10000):
     sigmas = sigma[None, :].repeat(sn, 1)
     x_sample = sigma * torch.randn_like(sigmas)
-    x_sample = x_sample % T
-    normal_ = d_log_p_wrapped_normal(x_sample, sigmas, T=T)
+    x_sample = x_sample % t
+    normal_ = d_log_p_wrapped_normal(x_sample, sigmas, t=t)
     return (normal_**2).mean(dim=0)  # type: ignore
