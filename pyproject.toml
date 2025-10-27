@@ -41,10 +41,9 @@ Repository = "https://github.com/hspark1212/chemeleon-dng"
 Issues = "https://github.com/hspark1212/chemeleon-dng/issues"
 Documentation = "https://github.com/hspark1212/chemeleon-dng#readme"
 
-[tool.setuptools]
-# Automatically discover all packages (includes subpackages)
-# This fixes the PyPI distribution to include dataset/, diffusion/, etc.
-packages = {find = {}}
+[tool.setuptools.packages.find]
+where = ["."]  
+include = ["chemeleon_dng*"]
 
 [tool.pytest.ini_options]
 minversion = "7.0"
