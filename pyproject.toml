@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "chemeleon-dng"
-version = "0.1.0"
+version = "0.1.1"
 description = "Chemeleon framework for De Novo Generation (DNG) and Crystal Structure Prediction (CSP) tasks"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -41,8 +41,9 @@ Repository = "https://github.com/hspark1212/chemeleon-dng"
 Issues = "https://github.com/hspark1212/chemeleon-dng/issues"
 Documentation = "https://github.com/hspark1212/chemeleon-dng#readme"
 
-[tool.setuptools]
-packages = ["chemeleon_dng"]
+[tool.setuptools.packages.find]
+where = ["."]  
+include = ["chemeleon_dng*"]
 
 [tool.pytest.ini_options]
 minversion = "7.0"
