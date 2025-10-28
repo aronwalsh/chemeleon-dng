@@ -41,6 +41,9 @@ Repository = "https://github.com/hspark1212/chemeleon-dng"
 Issues = "https://github.com/hspark1212/chemeleon-dng/issues"
 Documentation = "https://github.com/hspark1212/chemeleon-dng#readme"
 
+[project.scripts]
+chemeleon-dng = "chemeleon_dng.sample:main"
+
 [tool.setuptools.packages.find]
 where = ["."]  
 include = ["chemeleon_dng*"]

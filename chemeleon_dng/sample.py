@@ -239,5 +239,10 @@ def sample(
         )
 
 
-if __name__ == "__main__":
+def main():
+    """CLI entry point for chemeleon-dng command."""
     fire.Fire(sample)
+
+
+if __name__ == "__main__":
+    main()
