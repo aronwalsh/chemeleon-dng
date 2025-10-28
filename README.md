@@ -54,10 +54,12 @@ sample(
 > [!TIP]
 > Invoke `help(sample)` to explore all available parameters and usage examples.
 
-For the command line interface, you can use the following command:
+### Command-Line Interface
+
+After installing via pip, you can use the `chemeleon-dng` command directly:
 
 ```bash
-python -m chemeleon_dng.sample --task=csp --formulas="NaCl,LiMnO2" --num_samples=10 --output_dir="results" --device=cpu
+chemeleon-dng --task=csp --formulas="NaCl,LiMnO2" --num_samples=10 --output_dir="results" --device=cpu
 ```
 
 This command generates 10 crystal structures for the given formulas using the CSP task and saves the CIF files of the generated structures in the `results/` directory using CPU.
@@ -78,10 +80,10 @@ sample(
 )
 ```
 
-For the command line interface, you can use the following command:
+For the command line interface:
 
 ```bash
-python -m chemeleon_dng.sample --task=dng --num_samples=200 --batch_size=100 --output_dir="results" --device=cuda
+chemeleon-dng --task=dng --num_samples=200 --batch_size=100 --output_dir="results" --device=cuda
 ```
 
 This command generates 200 random crystal structures using the DNG task with two batches of 100 each, and saves the generated structures in the `results/` directory using GPU.
