@@ -6,6 +6,7 @@ It supports three types of tasks:
 """
 
 import json
+import warnings
 from pathlib import Path
 
 import fire
@@ -232,12 +233,21 @@ def sample(
     # Save generated structures in JSON format
     if save_json:
         gen_atoms_files = list(output_path.glob("sample_*.cif"))
-        all_gen_atoms_list = [Structure.from_file(file) for file in gen_atoms_files]
+        all_gen_atoms_list = []
+        for file in gen_atoms_files:
+            try:
+                struct = Structure.from_file(file)
+                all_gen_atoms_list.append(struct)
+            except Exception as e:
+                warnings.warn(
+                    f"Failed to convert {file} to a pymatgen.core.Structure object: {e}",
+                    UserWarning,
+                    stacklevel=2,
+                )
         dumpfn(all_gen_atoms_list, output_path / "generated_structures.json.gz")
         print(
-            f"The {len(all_gen_atoms_list)} generated structures saved in JSON format at: {output_path / 'generated_structures.json.gz'}"
+            f"Out of {len(gen_atoms_files)} generated structures, {len(all_gen_atoms_list)} were successfully converted to pymatgen Structure objects and saved in JSON format at: {output_path / 'generated_structures.json.gz'}"
         )
-
 
 def main():
     """CLI entry point for chemeleon-dng command."""
