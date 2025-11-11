@@ -7,8 +7,7 @@ from chemeleon_dng.diffusion.models.base import DiffusionModelBase
 
 
 class DSM(DiffusionModelBase):
-    """Denoising Score Matching (DSM).
-    """
+    """Denoising Score Matching (DSM)."""
 
     def __init__(
         self,

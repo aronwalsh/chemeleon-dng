@@ -2,8 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class DiffusionModelBase(ABC):
-    """Abstract base class for diffusion models.
-    """
+    """Abstract base class for diffusion models."""
 
     @abstractmethod
     def q_sample(self):

@@ -6,8 +6,7 @@ from chemeleon_dng.diffusion.models.base import DiffusionModelBase
 
 
 class DDPM(DiffusionModelBase):
-    """Denoising Diffusion Probabilistic Model (DDPM).
-    """
+    """Denoising Diffusion Probabilistic Model (DDPM)."""
 
     def __init__(
         self,

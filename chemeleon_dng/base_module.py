@@ -11,8 +11,7 @@ from chemeleon_dng.schema import CrystalBatch
 
 
 class BaseModule(LightningModule):
-    """Base module for configuration of optimizers and logging.
-    """
+    """Base module for configuration of optimizers and logging."""
 
     def __init__(
         self,
@@ -44,14 +43,18 @@ class BaseModule(LightningModule):
         raise NotImplementedError("calculate_loss is not implemented")
 
     def training_step(
-        self, batch: CrystalBatch, batch_idx: int  # pylint: disable=unused-argument
+        self,
+        batch: CrystalBatch,
+        batch_idx: int,  # pylint: disable=unused-argument
     ) -> Tensor:
         res = self.calculate_loss(batch)
         self._log_metrics(res=res, split="train", batch_size=batch.num_graphs)
         return res["total_loss"]
 
     def validation_step(
-        self, batch: CrystalBatch, batch_idx: int  # pylint: disable=unused-argument
+        self,
+        batch: CrystalBatch,
+        batch_idx: int,  # pylint: disable=unused-argument
     ) -> Tensor:
         res = self.calculate_loss(batch)
         self._log_metrics(res=res, split="val", batch_size=batch.num_graphs)
