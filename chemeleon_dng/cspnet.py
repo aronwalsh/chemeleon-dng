@@ -11,8 +11,7 @@ from chemeleon_dng.scatter import scatter_mean
 
 
 class CSPNetTask(enum.Enum):
-    """Which task of the model.
-    """
+    """Which task of the model."""
 
     CSP = enum.auto()  # Crystal Structure Prediction
     DNG = enum.auto()  # De Novo Generation

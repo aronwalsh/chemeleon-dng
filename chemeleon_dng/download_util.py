@@ -15,13 +15,16 @@ def download_file(url: str, filepath: Path) -> None:
 
     total_size = int(response.headers.get("content-length", 0))
 
-    with open(filepath, "wb") as f, tqdm(
-        desc=f"Downloading {filepath.name}",
-        total=total_size,
-        unit="B",
-        unit_scale=True,
-        unit_divisor=1024,
-    ) as pbar:
+    with (
+        open(filepath, "wb") as f,
+        tqdm(
+            desc=f"Downloading {filepath.name}",
+            total=total_size,
+            unit="B",
+            unit_scale=True,
+            unit_divisor=1024,
+        ) as pbar,
+    ):
         for chunk in response.iter_content(chunk_size=8192):
             if chunk:
                 f.write(chunk)

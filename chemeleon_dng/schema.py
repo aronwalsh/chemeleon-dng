@@ -8,8 +8,7 @@ from torch import Tensor
 
 
 class CrystalBatch(BaseModel):
-    """A schema for a batch of crystal structures.
-    """
+    """A schema for a batch of crystal structures."""
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
 

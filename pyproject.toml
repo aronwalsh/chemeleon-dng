@@ -111,6 +111,7 @@ ignore = [
     "S301",    # Pickle usage (needed for model checkpoints)
     "B007",    # Unused loop control variable
     "B008",    # Function call in default argument
+    "B028",    # No explicit stacklevel keyword argument found
     "C901",    # Function is too complex
     "UP008",   # Use super() without arguments
     "S202",    # Uses of tarfile.extractall()

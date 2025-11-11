@@ -14,8 +14,7 @@ from chemeleon_dng.script_util import create_model
 
 
 class DiffusionModuleTask(enum.Enum):
-    """Which task of the model.
-    """
+    """Which task of the model."""
 
     CSP = enum.auto()  # Crystal Structure Prediction
     DNG = enum.auto()  # De Novo Generation
@@ -23,8 +22,7 @@ class DiffusionModuleTask(enum.Enum):
 
 
 class DiffusionType(enum.Enum):
-    """Type of diffusion model.
-    """
+    """Type of diffusion model."""
 
     D3PM = enum.auto()  # Discrete Denoising Diffusion Probabilistic Models (Discrete)
     DDPM = enum.auto()  # Denoising Diffusion Probabilistic Model (Variance-preserving)
@@ -32,8 +30,7 @@ class DiffusionType(enum.Enum):
 
 
 class DiffusionModule(BaseModule):
-    """Utilities for training and sampling diffusion models.
-    """
+    """Utilities for training and sampling diffusion models."""
 
     def __init__(
         self,
@@ -50,9 +47,9 @@ class DiffusionModule(BaseModule):
         self.save_hyperparameters()
 
         if task == DiffusionModuleTask.CSP:
-            assert (
-                diffusion_atom_type is None
-            ), "Diffusion atom type should be None, when CSP"
+            assert diffusion_atom_type is None, (
+                "Diffusion atom type should be None, when CSP"
+            )
         self.model = create_model(**model_configs, task=task.name)
         self.num_timesteps = num_timesteps
         self.diffusion_atom_type = diffusion_atom_type
@@ -67,8 +64,7 @@ class DiffusionModule(BaseModule):
         noise_lattices: Tensor | None = None,
         noise_frac_coords: Tensor | None = None,
     ) -> CrystalBatch:
-        """Sample from the forward process q(x_t | x_0).
-        """
+        """Sample from the forward process q(x_t | x_0)."""
         return CrystalBatch(
             atom_types=(
                 self.diffusion_atom_type.q_sample(
@@ -171,8 +167,7 @@ class DiffusionModule(BaseModule):
         cond_embeds: Tensor | None = None,
         null_cond_embeds: Tensor | None = None,
     ) -> CrystalBatch:
-        """Sample from the reverse process p(x_{t-1} | x_t).
-        """
+        """Sample from the reverse process p(x_{t-1} | x_t)."""
         # Predictor
         model_predictor_output = _model_prediction(
             model=self.model,
@@ -247,9 +242,9 @@ class DiffusionModule(BaseModule):
         if task.lower() == "csp":
             assert self.model.task.name.lower() == "csp", "Model task should be CSP"  # type: ignore
             if atom_types is not None:
-                assert len(atom_types) == sum(
-                    num_atoms
-                ), "Length of atom_types and num_atoms should be the same."
+                assert len(atom_types) == sum(num_atoms), (
+                    "Length of atom_types and num_atoms should be the same."
+                )
             else:
                 raise ValueError("atom_types must be provided for CSP task.")
         elif task.lower() == "dng":
@@ -348,9 +343,8 @@ def _model_prediction(
             1 - cond_scale
         ) * null_model_output.lattices + cond_scale * cond_model_output.lattices
         output.frac_coords = (
-            (1 - cond_scale) * null_model_output.frac_coords
-            + cond_scale * cond_model_output.frac_coords
-        )
+            1 - cond_scale
+        ) * null_model_output.frac_coords + cond_scale * cond_model_output.frac_coords
     else:
         output = model(
             atom_types=x_t.atom_types,

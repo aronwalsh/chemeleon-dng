@@ -73,9 +73,9 @@ def main(_config):
     if cfg["logger"]["offline"]:
         cfg["logger"]["log_model"] = False
     if cfg["logger"]["group"] is None:
-        cfg["logger"][
-            "group"
-        ] = f"chemeleon/{cfg['task']}/{cfg['datamodule']['dataset_type']}"
+        cfg["logger"]["group"] = (
+            f"chemeleon/{cfg['task']}/{cfg['datamodule']['dataset_type']}"
+        )
     logger = WandbLogger(**cfg["logger"])
 
     # Set up Trainer
