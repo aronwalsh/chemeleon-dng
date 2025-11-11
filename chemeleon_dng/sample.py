@@ -64,7 +64,9 @@ def sample_csp(
 
         # Save generated structures
         for j, atoms in enumerate(gen_atoms_list):
-            atoms.write(output_path / f"sample_{i+j}_{atoms.get_chemical_formula()}.cif")  # type: ignore
+            atoms.write(
+                output_path / f"sample_{i + j}_{atoms.get_chemical_formula()}.cif"
+            )  # type: ignore
 
 
 def sample_dng(
@@ -83,9 +85,9 @@ def sample_dng(
         ).tolist()
     elif isinstance(num_atom_distribution, list):
         num_atoms = num_atom_distribution
-        assert (
-            len(num_atoms) == num_samples
-        ), "num_atom_distribution must be a list of length num_samples."
+        assert len(num_atoms) == num_samples, (
+            "num_atom_distribution must be a list of length num_samples."
+        )
     else:
         raise ValueError(
             "num_atom_distribution must be either a string or a list of integers."
@@ -102,7 +104,9 @@ def sample_dng(
 
         # Save generated structures
         for j, atoms in enumerate(gen_atoms_list):
-            atoms.write(output_path / f"sample_{i+j}_{atoms.get_chemical_formula()}.cif")  # type: ignore
+            atoms.write(
+                output_path / f"sample_{i + j}_{atoms.get_chemical_formula()}.cif"
+            )  # type: ignore
 
 
 def sample(
@@ -211,9 +215,9 @@ def sample(
             output_path=output_path,
         )
     elif task == "dng":
-        assert (
-            num_atom_distribution is not None
-        ), "num_atom_distribution must be provided for DNG task."
+        assert num_atom_distribution is not None, (
+            "num_atom_distribution must be provided for DNG task."
+        )
         sample_dng(
             dm=dm,
             num_atom_distribution=num_atom_distribution,
@@ -242,12 +246,12 @@ def sample(
                 warnings.warn(
                     f"Failed to convert {file} to a pymatgen.core.Structure object: {e}",
                     UserWarning,
-                    stacklevel=2,
                 )
         dumpfn(all_gen_atoms_list, output_path / "generated_structures.json.gz")
         print(
             f"Out of {len(gen_atoms_files)} generated structures, {len(all_gen_atoms_list)} were successfully converted to pymatgen Structure objects and saved in JSON format at: {output_path / 'generated_structures.json.gz'}"
         )
+
 
 def main():
     """CLI entry point for chemeleon-dng command."""
