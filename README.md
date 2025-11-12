@@ -22,9 +22,11 @@ pip install chemeleon-dng
 ### Install from Source
 
 If you don't have uv installed:
+
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
+
 Then install the package:
 
 ```bash
@@ -87,6 +89,17 @@ chemeleon-dng --task=dng --num_samples=200 --batch_size=100 --output_dir="result
 ```
 
 This command generates 200 random crystal structures using the DNG task with two batches of 100 each, and saves the generated structures in the `results/` directory using GPU.
+
+## Tutorial
+
+For a comprehensive step-by-step guide on using Chemeleon-DNG for crystal structure discovery, check out our interactive tutorial:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hspark1212/chemeleon-dng/blob/main/tutorial.ipynb)
+
+- **Composition screening** with [SMACT](https://github.com/WMD-group/SMACT)
+- **Crystal structure generation** with [chemeleon-DNG](https://github.com/hspark1212/chemeleon-dng)
+- **Geometry optimization** with [MACE](https://github.com/ACEsuit/mace) force fields and [TorchSim](https://github.com/TorchSim/torch-sim)
+- **Stability analysis** using [Materials Project](https://next-gen.materialsproject.org) phase diagrams via [mp-api](https://github.com/materialsproject/api)
 
 ## Pretrained Models
 
