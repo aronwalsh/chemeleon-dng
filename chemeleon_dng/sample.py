@@ -119,6 +119,7 @@ def sample(
     output_dir: str = "./results",
     device: str | None = None,
     save_json: bool = True,
+    return_structures: bool = False,
 ):
     """Sample crystal structures using a trained diffusion model.
 
@@ -141,6 +142,7 @@ def sample(
     :param device: Device to run the model on ('cuda' or 'cpu').
                   If None, uses CUDA if available, otherwise CPU, defaults to None
     :param save_json: Whether to save the generated structures in JSON format, defaults to True
+    :param return_structures: Whether to return the generated structures as a list of ASE Atoms objects, defaults to False
 
     Examples:
     --------
@@ -236,21 +238,26 @@ def sample(
 
     # Save generated structures in JSON format
     if save_json:
-        gen_atoms_files = list(output_path.glob("sample_*.cif"))
-        all_gen_atoms_list = []
-        for file in gen_atoms_files:
+        gen_cif_files = list(output_path.glob("sample_*.cif"))
+        gen_structures = []
+        for file in gen_cif_files:
             try:
                 struct = Structure.from_file(file)
-                all_gen_atoms_list.append(struct)
+                gen_structures.append(struct)
             except Exception as e:
                 warnings.warn(
                     f"Failed to convert {file} to a pymatgen.core.Structure object: {e}",
                     UserWarning,
                 )
-        dumpfn(all_gen_atoms_list, output_path / "generated_structures.json.gz")
+        dumpfn(gen_structures, output_path / "generated_structures.json.gz")
         print(
-            f"Out of {len(gen_atoms_files)} generated structures, {len(all_gen_atoms_list)} were successfully converted to pymatgen Structure objects and saved in JSON format at: {output_path / 'generated_structures.json.gz'}"
+            f"Out of {len(gen_cif_files)} generated structures, {len(gen_structures)} were successfully converted to pymatgen Structure objects and saved in JSON format at: {output_path / 'generated_structures.json.gz'}"
         )
+
+    if return_structures:
+        return gen_structures
+    else:
+        return [structure.to_ase_atoms() for structure in gen_structures]
 
 
 def main():
