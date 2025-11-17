@@ -112,6 +112,7 @@ ignore = [
     "B007",    # Unused loop control variable
     "B008",    # Function call in default argument
     "B028",    # No explicit stacklevel keyword argument found
+    "B905",    # `zip()` without an explicit `strict=` parameter
     "C901",    # Function is too complex
     "UP008",   # Use super() without arguments
     "S202",    # Uses of tarfile.extractall()
