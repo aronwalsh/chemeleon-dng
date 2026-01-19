@@ -181,7 +181,9 @@ def sample(
     print(f"Using checkpoint path: {model_path}")
 
     # Load the diffusion module
-    dm = DiffusionModule.load_from_checkpoint(model_path, map_location=device)
+    dm = DiffusionModule.load_from_checkpoint(
+        model_path, map_location=device, weights_only=False
+    )
 
     # Validate the checkpoint’s task matches requested task
     assert (
