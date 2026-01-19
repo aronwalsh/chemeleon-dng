@@ -260,7 +260,7 @@ requires-dist = [
     { name = "fire", specifier = ">=0.7.1" },
     { name = "pydantic", specifier = ">=2.12.0" },
     { name = "pymatgen", specifier = ">=2025.10.7" },
-    { name = "pytorch-lightning", specifier = ">=2.5.5" },
+    { name = "pytorch-lightning", specifier = ">=2.6.0" },
     { name = "torch", specifier = ">=2.1.0" },
     { name = "torch-geometric", specifier = ">=2.6.1" },
 ]
@@ -1757,7 +1757,7 @@ wheels = [
 
 [[package]]
 name = "pytorch-lightning"
-version = "2.5.5"
+version = "2.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "fsspec", extra = ["http"] },
@@ -1769,9 +1769,9 @@ dependencies = [
     { name = "tqdm" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/16/78/bce84aab9a5b3b2e9d087d4f1a6be9b481adbfaac4903bc9daaaf09d49a3/pytorch_lightning-2.5.5.tar.gz", hash = "sha256:d6fc8173d1d6e49abfd16855ea05d2eb2415e68593f33d43e59028ecb4e64087", size = 643703, upload-time = "2025-09-05T16:01:18.313Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/07/d7/e3963d9669758f93b07941f4e2e82a394eb3d0980e29baa4764f3bad6689/pytorch_lightning-2.6.0.tar.gz", hash = "sha256:25b0d4f05e1f33b72be0920c34d0465777fe5f623228f9d6252b4b0f685d7037", size = 658853, upload-time = "2025-11-28T09:34:13.098Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/04/f6/99a5c66478f469598dee25b0e29b302b5bddd4e03ed0da79608ac964056e/pytorch_lightning-2.5.5-py3-none-any.whl", hash = "sha256:0b533991df2353c0c6ea9ca10a7d0728b73631fd61f5a15511b19bee2aef8af0", size = 832431, upload-time = "2025-09-05T16:01:16.234Z" },
+    { url = "https://files.pythonhosted.org/packages/77/eb/cc6dbfe70d15318dbce82674b1e8057cef2634ca9f9121a16b8a06c630db/pytorch_lightning-2.6.0-py3-none-any.whl", hash = "sha256:ee72cff4b8c983ecfaae8599382544bd5236d9eb300adc7dd305f359195f4e79", size = 849476, upload-time = "2025-11-28T09:34:11.271Z" },
 ]
 
 [[package]]

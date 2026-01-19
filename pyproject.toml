@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "chemeleon-dng"
-version = "0.1.4"
+version = "0.1.5"
 description = "Chemeleon framework for De Novo Generation (DNG) and Crystal Structure Prediction (CSP) tasks"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -30,7 +30,7 @@ dependencies = [
     "fire>=0.7.1",
     "pydantic>=2.12.0",
     "pymatgen>=2025.10.7",
-    "pytorch-lightning>=2.5.5",
+    "pytorch-lightning>=2.6.0",
     "torch>=2.1.0",
     "torch-geometric>=2.6.1",
 ]
