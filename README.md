@@ -112,6 +112,27 @@ The framework includes pretrained checkpoints located in the `ckpts/` directory:
 - `chemeleon_csp_mp_20_v0.0.2.ckpt`
 - `chemeleon_dng_mp_20_v0.0.2.ckpt`
 
+### Troubleshooting Checkpoint Downloads
+
+If automatic download fails (timeout, connection error, or firewall restrictions), manually download the checkpoints:
+
+```bash
+# Download from Figshare
+wget https://ndownloader.figshare.com/files/54966305 -O checkpoints.tar.gz
+
+# Extract to project root
+tar -xzf checkpoints.tar.gz
+
+# Verify
+ls ckpts/
+```
+
+For checkpoints in custom locations, use the `model_path` parameter:
+
+```python
+sample(task="csp", formulas=["NaCl"], model_path="/path/to/checkpoint.ckpt")
+```
+
 ## Benchmarks
 
 For benchmarking purposes, we provide 10,000 sampled structures for the `DNG` task trained on [`mp-20`](benchmarks/chemeleon_dng_mp_20_v0.0.2.json.gz) and [`alex_mp_20`](benchmarks/chemeleon_dng_alex_mp_20_v0.0.2.json.gz) datasets in the `benchmarks/` directory. The sampled structures are saved in CIF format and compressed JSON format.

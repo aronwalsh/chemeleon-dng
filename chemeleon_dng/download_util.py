@@ -5,7 +5,7 @@ import requests
 from tqdm import tqdm
 
 # Figshare download URL for the checkpoint tar.gz file
-FIGSHARE_URL = "https://figshare.com/ndownloader/files/54966305"
+FIGSHARE_URL = "https://ndownloader.figshare.com/files/54966305"
 
 
 def download_file(url: str, filepath: Path) -> None:
