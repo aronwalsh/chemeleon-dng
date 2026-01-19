@@ -10,7 +10,13 @@ FIGSHARE_URL = "https://ndownloader.figshare.com/files/54966305"
 
 def download_file(url: str, filepath: Path) -> None:
     """Download a file from URL with progress bar."""
-    response = requests.get(url, stream=True, timeout=30)
+    # Use longer timeout for large files and allow redirects
+    response = requests.get(
+        url,
+        stream=True,
+        timeout=(30, 600),  # (connect timeout, read timeout)
+        allow_redirects=True,
+    )
     response.raise_for_status()
 
     total_size = int(response.headers.get("content-length", 0))
