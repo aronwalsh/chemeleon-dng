@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.5] - 2026-01-19
+
+### Changed
+- Updated pytorch-lightning requirement from `>=2.5.5` to `>=2.6.0` for weights_only parameter support
+
+### Fixed
+- Fixed checkpoint loading compatibility with PyTorch 2.6.0 by adding `weights_only=False` parameter
+- Resolved UnpicklingError when loading checkpoints with custom classes in PyTorch 2.6.0+
+
 ## [0.1.4] - 2026-01-19
 
 ### Added
@@ -45,6 +54,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Tutorial notebook with usage examples
 - PyPI distribution at https://pypi.org/project/chemeleon-dng/
 
+[0.1.5]: https://github.com/hspark1212/chemeleon-dng/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/hspark1212/chemeleon-dng/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/hspark1212/chemeleon-dng/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/hspark1212/chemeleon-dng/compare/v0.1.0...v0.1.2
