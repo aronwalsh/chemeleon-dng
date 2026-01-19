@@ -11,6 +11,7 @@ FIGSHARE_URL = "https://ndownloader.figshare.com/files/54966305"
 def download_file(url: str, filepath: Path) -> None:
     """Download a file from URL with progress bar."""
     # Use longer timeout for large files and allow redirects
+    print(f"Downloading from: {url}")
     response = requests.get(
         url,
         stream=True,
@@ -20,6 +21,15 @@ def download_file(url: str, filepath: Path) -> None:
     response.raise_for_status()
 
     total_size = int(response.headers.get("content-length", 0))
+    print(f"Total size: {total_size / (1024**2):.2f} MB")
+    print(f"Final URL: {response.url}")
+
+    if total_size == 0:
+        raise ValueError(
+            "Downloaded file has zero size. Please download manually:\n"
+            f"wget {url} -O checkpoints.tar.gz\n"
+            "tar -xzf checkpoints.tar.gz"
+        )
 
     with (
         open(filepath, "wb") as f,
